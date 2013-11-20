@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  :markdown
+    Welcome to #{title}
+
+  div.well
+    h2 Create task
+    form(action="/tasks", method="post", accept-charset="utf-8")
+      fieldset
+        p
+          label(for="todo[description]") Description:
+            input(type="text", name="todo[description]")
+            .tip.
+              The task =P.
+      fieldset
+        p
+          label(for="task[tags]") Tags:
+            input(type="text", name="todo[tags]")
+            .tip.
+              Tags (comma separated)
+      p.buttons
+        input(type="submit", value="Save")
+  div.well
+    h2 Tasks
+    if !todos.length
+      p No tasks yet...
+
+    each todo in todos
+      li(class="completed-#{todo.completed}")
+        =todo.description
+        span.muted.tags
+          each tag in todo.tags
+            a.tag(href='/tags/#{tag}')
+              #
+              =tag
+        a.complete(href='/tasks/#{todo.id}/complete')
+          unless todo.completed
+            span Complete
+          else
+            span Uncomplete
+        a.delete(href='/tasks/#{todo.id}/destroy') Delete

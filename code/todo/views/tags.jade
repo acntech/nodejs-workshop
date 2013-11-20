@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  :markdown
+    Welcome to #{title}
+
+  div.well
+    h2 Tasks with tag ##{tag}
+    a(href='/') Back to index
+  div.well
+    h2 Tasks
+    if !todos.length
+      p No tasks yet...
+
+    each todo in todos
+      li
+        =todo.description
+        span.muted.tags
+          each tag in todo.tags
+            a.tag(href='/tags/#{tag}')
+              #
+              =tag
+        a.delete(href='/tasks/#{todo.id}/destroy') Delete

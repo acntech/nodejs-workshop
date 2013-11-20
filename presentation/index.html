@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>node.js | Event-driven I/O server-side JavaScript environment based on V8</title>
+
+    <meta name="description" content="node.js is an event-driven I/O server-side JavaScript environment based on V8." />
+    <meta name="author" content="Lars-Olof Moilanen" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <!--
+
+        Impress.js doesn't depend on any external stylesheet. Script adds all styles it needs for
+        presentation to work.
+
+        This style below contains styles only for demo presentation. Browse it to see how impress.js
+        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
+        you to use them directly in your presentation.
+
+        Be creative, build your own. We don't really want all impress.js presentations to look the same,
+        do we?
+
+        When creating your own presentation get rid of this file. Start from scratch, it's fun!
+
+    -->
+    <link href="styles/impress-demo.css" rel="stylesheet" />
+    <link href="styles/monokai.css" rel="stylesheet" />
+    <!--<link href="styles/highlight.min.css" rel="stylesheet" />-->
+
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+<div id="impress">
+
+    <!--
+
+        Here is where interesting thing start to happen.
+
+        Each step of the presentation should be an element inside the `#impress` with a class name
+        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
+        the 'camera' shows them on each step of the presentation.
+
+        Positioning information is passed through data attributes.
+
+        In the example below we only specify x and y position of the step element with `data-x="-1000"`
+        and `data-y="-1500` attributes. This means that **the center** of the element (yes, the center)
+        will be positioned in point x = -1000px and y = -1500px of the presentation 'canvas'.
+
+        It will not be rotated or scaled.
+
+    -->
+    <div class="step slide" data-x="-1000" data-y="-1500">
+        <img src="img/nodejs-logo.png"/>
+        <q>
+            Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.
+        </q>
+    </div>
+    <div class="step slide" data-x="0" data-y="-1500">
+        <p>
+            Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient,
+            perfect for data-intensive real-time applications that run across distributed devices.
+        </p>
+        <pre><code style="font-size: 90%">
+      var http = require('http');
+      http.createServer(function (req, res) {
+          res.writeHead(200, {'Content-Type': 'text/plain'});
+          res.end('Hello World\n');
+      }).listen(1337, '127.0.0.1');
+      console.log('Server running at http://127.0.0.1:1337/');
+
+      -----------------------------------------------------------------------------
+
+      $ curl http://localhost:1337
+      Hello Node.js
+        </code></pre>
+    </div>
+    <div class="step slide slim-margin" data-x="1000" data-y="-1500">
+        <q>
+            express is an application framework for node.js
+        </q>
+        <pre><code>
+
+      var express = require('express');
+      var app = express();
+
+      // Routing on path/operation, parsing path params :-)
+      app.get('/hello/:name', function(req, res){
+          res.send('Hello ' + req.params.name);
+      });
+      app.listen(3000);
+      console.log('Listening on port 3000');
+        </code></pre>
+    </div>
+    <div class="step slide slim-margin" data-x="-1000" data-y="-700">
+        <q>
+            mongoose - elegant mongodb object modeling for node.js
+        </q>
+        <pre>
+            <code>
+      var mongoose = require('mongoose');
+      mongoose.connect('localhost', 'test');
+
+      var schema = mongoose.Schema({ name: 'string' });
+      var Cat = mongoose.model('Cat', schema);
+
+      var kitty = new Cat({ name: 'Zildjian' });
+      kitty.save(function (err) {
+          if (err) // ...
+              console.log('meow');
+      });
+            </code>
+        </pre>
+    </div>
+    <div class="step slide slim-margin" data-x="0" data-y="-700">
+        <q>
+            jade - Node Template Engine
+        </q>
+        <pre>
+            <code style="font-size: 75%; line-height: 1.3">
+          doctype 5
+          html(lang="en")
+            head
+              title= pageTitle
+              script(type='text/javascript')
+                if (foo) {
+                   bar()
+                }
+            body
+              h1 Jade - node template engine
+              #container
+                if youAreUsingJade
+                  p You are amazing
+                else
+                  p Get on it!
+            </code></pre>
+    </div>
+    <div class="step slide slim-margin" data-x="1000" data-y="-700">
+        <q>
+            jade cont.
+        </q>
+        <pre>
+            <code style="font-size: 75%; line-height: 1.1">
+          &lt;!DOCTYPE html&gt;
+          &lt;html lang=&quot;en&quot;&gt;
+            &lt;head&gt;
+              &lt;title&gt;Jade&lt;/title&gt;
+              &lt;script type=&quot;text/javascript&quot;&gt;
+                if (foo) {
+                  bar()
+                }
+              &lt;/script&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+              &lt;h1&gt;Jade - node template engine&lt;/h1&gt;
+              &lt;div id=&quot;container&quot;&gt;
+                &lt;p&gt;You are amazing&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/body&gt;
+          &lt;/html&gt;
+            </code>
+        </pre>
+    </div>
+    <div class="step slide" data-x="-1000" data-y="100">
+      <q>
+        Time to code!
+      </q>
+      <pre><code class="bash">
+      cd [path-where-you-unzipped-mongo]
+      mongod --dbpath=[path-to-your-db-files]
+
+      cd [node-js-workshop\code]
+      node hello-node\hello_node.js
+
+      # Go to <a href="http://localhost:1337">http://localhost:1337</a>
+      &gt; "Hello Node.js"
+          </code></pre>
+    </div>
+  <div class="step slide" data-x="0" data-y="100">
+    <q>
+      Todo app
+    </q>
+      <pre><code class="bash">
+        cd [path-where-you-unzipped-mongo]
+        mongod --dbpath=[path-to-your-db-files]
+
+        cd [node-js-workshop\code]
+        node todo\app.js
+
+        # Go to <a href="http://localhost:3000">http://localhost:3000</a>
+      </code></pre>
+  </div>
+
+    <div id="overview" class="step" data-x="0" data-y="-700" data-scale="3">
+    </div>
+
+</div>
+
+<!--
+
+    Hint is not related to impress.js in any way.
+
+    But it can show you how to use impress.js features in creative way.
+
+    When the presentation step is shown (selected) its element gets the class of "active" and the body element
+    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+    the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+
+    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+    the first step of presentation is visible for a couple of seconds.
+
+    ...
+
+    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+    It's just a quick and dirty workaround to get different hint text for touch devices.
+    In a real world it should be at least placed in separate JS file ... and the touch content should be
+    probably just hidden somewhere in HTML - not hard-coded in the script.
+
+    Just sayin' ;)
+
+-->
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+    if ("ontouchstart" in document.documentElement) {
+        document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+    }
+</script>
+
+<!--
+
+    Last, but not least.
+
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+
+    In here I just include full source of the script to make it more readable.
+
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+
+-->
+<script src="js/impress.js"></script>
+<script src="js/highlight.min.js"></script>
+<script>impress().init();</script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!--
+
+    The `impress()` function also gives you access to the API that controls the presentation.
+
+    Just store the result of the call:
+
+        var api = impress();
+
+    and you will get three functions you can call:
+
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+
+-->
+
+
+<!-- social, tracking etc, ignore -->
+
+<!--<div style="position: fixed; bottom: 10px; left: 10px; pointer-events: auto;">
+    <iframe src="http://ghbtns.com/github-btn.html?user=bartaz&repo=impress.js&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+    <iframe src="http://ghbtns.com/github-btn.html?user=bartaz&repo=impress.js&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+
+    <a href="http://twitter.com/share" class="twitter-share-button" data-text="impress your audience with impress.js - a presentation tool based on the power of CSS3 transforms and transitions" data-url="http://bartaz.github.com/impress.js"></a>
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+</div>
+
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9117370-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>-->
+</body>
+</html>

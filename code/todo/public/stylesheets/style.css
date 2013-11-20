@@ -1,0 +1,25 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+fieldset {
+  border: none;
+}
+
+.muted {
+  color: #cccccc;
+}
+.tags, .delete {
+    margin-left: 5px;
+}
+a.tag {
+    margin-right: 5px;
+}
+li.completed-true {
+    text-decoration: line-through;
+}
